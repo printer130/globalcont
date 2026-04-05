@@ -1,0 +1,418 @@
+---
+// src/pages/servicios.astro
+
+// Datos estructurados para SEO
+const services = [
+  {
+    title: "Constitución de Empresas en La Paz",
+    slug: "constitucion-empresas-la-paz",
+    description:
+      "Trámites SEPREC para constituir S.R.L. y S.A. en Bolivia. Asesoría legal completa para registrar tu empresa en La Paz.",
+    keywords: [
+      "constituir empresa La Paz",
+      "tramite SEPREC",
+      "S.R.L. Bolivia",
+      "registrar empresa Bolivia",
+    ],
+  },
+  {
+    title: "Declaraciones Juradas Impuestos Nacionales",
+    slug: "declaraciones-juradas-impuestos-nacionales",
+    description:
+      "Presentación de IVA, IT, IUE y Formulario 605. Cumplimiento tributario mensual y anual para empresas bolivianas.",
+    keywords: [
+      "declaraciones juradas Bolivia",
+      "IVA Bolivia",
+      "IUE Bolivia",
+      "formulario 605",
+      "impuestos nacionales",
+    ],
+  },
+  {
+    title: "Auditoría Financiera y Tributaria",
+    slug: "auditoria-financiera-tributaria",
+    description:
+      "Auditorías internas y externas con estándares internacionales. Diagnóstico completo de riesgos financieros y tributarios.",
+    keywords: [
+      "auditoria financiera La Paz",
+      "auditoria tributaria Bolivia",
+      "auditor externo Bolivia",
+    ],
+  },
+  {
+    title: "Contabilidad para PYMEs",
+    slug: "contabilidad-pymes-la-paz",
+    description:
+      "Servicios contables especializados para pequeñas y medianas empresas. Registro SIAT, balances y estados financieros.",
+    keywords: [
+      "contabilidad PYMEs La Paz",
+      "registro SIAT",
+      "balances Bolivia",
+      "contador La Paz",
+    ],
+  },
+  {
+    title: "Trámites SICOES y RUPE",
+    slug: "tramites-sicoes-rupe",
+    description:
+      "Registro en SICOES, RUPE y PROBOLIVIA para proveedores del Estado. Certificaciones y habilitaciones vigentes.",
+    keywords: [
+      "SICOES Bolivia",
+      "RUPE Bolivia",
+      "PROBOLIVIA",
+      "proveedor Estado Bolivia",
+    ],
+  },
+  {
+    title: "Asesoría Laboral y AFP",
+    slug: "asesoria-laboral-afp",
+    description:
+      "Gestión de planillas, seguros en cajas de salud y trámites en Gestora Pública. Cumplimiento normativo laboral.",
+    keywords: [
+      "asesoria laboral Bolivia",
+      "AFP Bolivia",
+      "caja salud Bolivia",
+      "planillas laborales La Paz",
+    ],
+  },
+];
+
+// JSON-LD para servicios múltiples
+const jsonLdServices = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: services.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.title,
+      description: service.description,
+      provider: {
+        "@type": "AccountingService",
+        name: "GLOBALCONT AUDIT SOLUTION S.R.L.",
+      },
+      areaServed: {
+        "@type": "City",
+        name: "La Paz",
+        containedIn: {
+          "@type": "Country",
+          name: "Bolivia",
+        },
+      },
+    },
+  })),
+};
+---
+
+<article class="bg-bg">
+  <!-- Hero Section Servicios -->
+  <!--   <section class="bg-primary text-white py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4"
+          >
+            Soluciones Integrales
+          </span>
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">
+            Servicios Contables y Tributarios en La Paz
+          </h1>
+          <p class="text-xl text-white/80 leading-relaxed">
+            Asesoría profesional para empresas bolivianas. Cumplimiento
+            normativo, optimización fiscal y tranquilidad para que te enfoques
+            en hacer crecer tu negocio.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+  <!-- Lista de Servicios (SEO Long-Tail) -->
+  <!--   <section class="py-16 lg:py-20" aria-labelledby="servicios-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="servicios-heading" class="sr-only">
+          Nuestros Servicios Especializados
+        </h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            services.map((service) => (
+              <article class="bg-white border border-border rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <h3 class="text-xl font-bold text-primary mb-3">
+                  {service.title}
+                </h3>
+                <p class="text-text-light text-sm leading-relaxed mb-4">
+                  {service.description}
+                </p>
+                <a
+                  href={`#contacto`}
+                  class="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-accent/80 transition-colors group"
+                >
+                  Consultar este servicio
+                  <svg
+                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+ -->
+  <!-- SEO Content: FAQ -->
+  <section class="py-16 lg:py-20 bg-white" aria-labelledby="faq-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2
+        id="faq-heading"
+        class="text-3xl font-bold text-center mb-12 text-primary"
+      >
+        Preguntas Frecuentes sobre Servicios Contables en Bolivia
+      </h2>
+
+      <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
+        <!-- FAQ 1 -->
+        <details
+          class="group bg-bg rounded-lg p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer"
+          itemprop="mainEntity"
+          itemscope
+          itemtype="https://schema.org/Question"
+        >
+          <summary
+            class="flex items-center justify-between font-semibold text-primary text-lg"
+            itemprop="name"
+          >
+            ¿Cuánto cuesta constituir una empresa en Bolivia?
+            <span
+              class="ml-4 flex-shrink-0 text-accent group-open:rotate-180 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="mt-4 text-text-light leading-relaxed"
+            itemprop="acceptedAnswer"
+            itemscope
+            itemtype="https://schema.org/Answer"
+          >
+            <p itemprop="text">
+              El costo varía según el tipo societario (S.R.L. o S.A.) y el
+              capital social. Incluye tasas del SEPREC, publicación en gaceta,
+              notaría y nuestros honorarios profesionales. Te ofrecemos un
+              presupuesto detallado sin compromiso.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details
+          class="group bg-bg rounded-lg p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer"
+          itemprop="mainEntity"
+          itemscope
+          itemtype="https://schema.org/Question"
+        >
+          <summary
+            class="flex items-center justify-between font-semibold text-primary text-lg"
+            itemprop="name"
+          >
+            ¿Qué documentos necesito para declarar impuestos en Bolivia?
+            <span
+              class="ml-4 flex-shrink-0 text-accent group-open:rotate-180 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="mt-4 text-text-light leading-relaxed"
+            itemprop="acceptedAnswer"
+            itemscope
+            itemtype="https://schema.org/Answer"
+          >
+            <p itemprop="text">
+              Necesitas: Registro de compras y ventas (SIAT), facturas
+              originales, libros contables actualizados, NIT vigente y
+              formularios de periodos anteriores. Nosotros gestionamos todo el
+              proceso para evitar multas del SIN.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details
+          class="group bg-bg rounded-lg p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer"
+          itemprop="mainEntity"
+          itemscope
+          itemtype="https://schema.org/Question"
+        >
+          <summary
+            class="flex items-center justify-between font-semibold text-primary text-lg"
+            itemprop="name"
+          >
+            ¿Es obligatorio tener un contador en Bolivia?
+            <span
+              class="ml-4 flex-shrink-0 text-accent group-open:rotate-180 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="mt-4 text-text-light leading-relaxed"
+            itemprop="acceptedAnswer"
+            itemscope
+            itemtype="https://schema.org/Answer"
+          >
+            <p itemprop="text">
+              Sí, toda empresa con NIT debe llevar contabilidad formal según el
+              Código de Comercio y normativa del SIN. Un contador colegiado
+              garantiza el cumplimiento legal y evita sanciones que pueden
+              llegar hasta el cierre del negocio.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details
+          class="group bg-bg rounded-lg p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer"
+          itemprop="mainEntity"
+          itemscope
+          itemtype="https://schema.org/Question"
+        >
+          <summary
+            class="flex items-center justify-between font-semibold text-primary text-lg"
+            itemprop="name"
+          >
+            ¿Cuánto tiempo tarda el trámite de constitución de empresa?
+            <span
+              class="ml-4 flex-shrink-0 text-accent group-open:rotate-180 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="mt-4 text-text-light leading-relaxed"
+            itemprop="acceptedAnswer"
+            itemscope
+            itemtype="https://schema.org/Answer"
+          >
+            <p itemprop="text">
+              El proceso completo toma entre 15 a 25 días hábiles, dependiendo
+              de la carga del SEPREC y la complejidad del tipo societario.
+              Nosotros agilizamos cada etapa y te mantenemos informado en tiempo
+              real.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <!-- <section
+      class="py-16 lg:py-20 bg-primary text-white"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 id="cta-heading" class="text-3xl lg:text-4xl font-bold mb-6">
+          ¿Listo para profesionalizar tu gestión contable?
+        </h2>
+        <p class="text-xl text-white/80 mb-8 leading-relaxed">
+          Agenda una consulta gratuita y descubre cómo podemos optimizar tus
+          procesos tributarios y financieros.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/#contacto"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-lg shadow-lg shadow-accent/25 hover:bg-accent/90 hover:shadow-accent/30 transition-all duration-200"
+          >
+            Solicitar asesoría gratuita
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/59176063400"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-200"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"
+              ></path>
+            </svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section> 
+  </article>-->
+
+  <!-- JSON-LD Structured Data -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLdServices)}
+  />
+</article>
