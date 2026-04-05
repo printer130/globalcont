@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  /* FONT */
+  --font-sans: "Inter", sans-serif;
+  --font-mono: monospace;
+
+  /* BRAND COLORS (Globalcont optimizado) */
+
+  /* Primary */
+  --color-primary: #0A1F44;
+  /* Azul medianoche */
+
+  /* CTA */
+  --color-accent: #F59E0B;
+  /* Naranja optimizado (mejor conversión) */
+
+  /* Secondary accent */
+  --color-gold: #C5A059;
+  /* Dorado suave (solo decorativo) */
+
+  /* Backgrounds */
+  --color-bg: #F4F7F9;
+  /* Fondo principal */
+  --color-white: #FFFFFF;
+
+  /* Text */
+  --color-text: #333333;
+  --color-text-light: #6B7280;
+
+  /* Borders */
+  --color-border: #E5E7EB;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter_24pt-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter_24pt-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter_24pt-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter_24pt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans font-semibold tracking-tight text-primary;
+  }
+
+  body {
+    @apply font-sans bg-bg text-text;
+  }
+}
+
+@layer utilities {
+
+  .btn-primary {
+    @apply bg-accent text-white font-medium px-4 py-2 rounded-lg;
+  }
+
+  .btn-primary:hover {
+    background-color: #d97706;
+    /* hover más oscuro */
+  }
+
+  .section-dark {
+    @apply bg-primary text-white;
+  }
+
+  .card {
+    @apply bg-white border border-border rounded-xl p-4 shadow-sm;
+  }
+}

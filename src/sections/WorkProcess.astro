@@ -1,0 +1,128 @@
+---
+// src/components/ProcessSection.astro
+interface Props {
+  title?: string;
+  subtitle?: string;
+  steps?: {
+    number: number;
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+}
+
+const defaultSteps = [
+  {
+    number: 1,
+    title: "Diagnóstico",
+    description: "Analizamos tu situación fiscal y contable actual para identificar riesgos, oportunidades y puntos de mejora inmediatos.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />`
+  },
+  {
+    number: 2,
+    title: "Plan Contable/Tributario",
+    description: "Diseñamos una estrategia personalizada, alineada a la normativa boliviana vigente y a los objetivos de tu empresa.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />`
+  },
+  {
+    number: 3,
+    title: "Ejecución",
+    description: "Implementamos el plan con precisión: gestión de trámites, declaraciones, balances y cumplimiento en plazos exactos.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`
+  },
+  {
+    number: 4,
+    title: "Seguimiento",
+    description: "Monitoreamos continuamente tus indicadores fiscales y contables para garantizar cumplimiento, evitar multas y optimizar resultados.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />`
+  }
+];
+
+const {
+  title = "Nuestro Proceso de Trabajo",
+  subtitle = "Una metodología estructurada que te da control total sobre tu gestión contable y tributaria, sin sorpresas.",
+  steps = defaultSteps
+} = Astro.props;
+---
+
+<section id="proceso" class="relative py-20 lg:py-28 bg-bg overflow-hidden">
+  <!-- Decorative background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>
+  </div>
+
+    <div class="absolute top-0 right-0 w-64 h-64 bg-[url('/mar_decorative.svg')] bg-contain bg-no-repeat opacity-60 pointer-events-none">
+  </div>
+	<!-- <div class="absolute inset-0 pointer-events-none">
+		<svg
+			data-name="Layer 1"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 1200 120"
+			preserveAspectRatio="none"
+		>
+			<path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill "
+			></path>
+		</svg>
+	</div> -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        Metodología Transparente
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-lg text-text-light leading-relaxed">{subtitle}</p>
+    </div>
+
+    <!-- Process Steps Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative">
+      <!-- Connecting line (desktop only) -->
+      <div class="hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-border via-gold/40 to-border" aria-hidden="true"></div>
+
+      {steps.map((step) => (
+        <article class="relative group">
+          <!-- Step Card -->
+          <div class="bg-white border border-border rounded-xl p-6 shadow-sm  transition-all duration-300 h-full flex flex-col">
+            <!-- Badge & Icon -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-md  transition-colors duration-300">
+                {step.number}
+              </span>
+              <svg class="w-6 h-6 text-gold opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                {step.icon}
+              </svg>
+            </div>
+            
+            <!-- Content -->
+            <h3 class="text-lg font-bold text-primary mb-2  transition-colors">{step.title}</h3>
+            <p class="text-text-light text-sm leading-relaxed flex-grow">{step.description}</p>
+          </div>
+
+          <!-- Arrow connector (desktop, except last) -->
+          {step.number < steps.length && (
+            <div class="hidden lg:block absolute top-11 -right-2 w-4 h-0.5 bg-gradient-to-r from-gold/40 to-transparent" aria-hidden="true"></div>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <!-- Control Message -->
+    <div class="mt-16 bg-white border border-border rounded-xl p-6 lg:p-8 shadow-sm max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary">Tu tranquilidad es nuestra prioridad</h4>
+          <p class="text-text-light text-sm">
+            Con este flujo claro y documentado, tendrás visibilidad total en cada etapa. 
+            Sin letra chica, sin retrasos, con reportes periódicos y un canal directo con tu asesor asignado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

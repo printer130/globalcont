@@ -1,0 +1,187 @@
+---
+// src/components/ComparisonTable.astro
+interface Feature {
+  name: string;
+  basic: boolean;
+  pro: boolean;
+  premium: boolean;
+}
+
+const features: Feature[] = [
+  {
+    name: "Contabilidad mensual completa",
+    basic: true,
+    pro: true,
+    premium: true,
+  },
+  { name: "Declaraciones IVA e IT", basic: true, pro: true, premium: true },
+  {
+    name: "Registro SIAT (compras/ventas)",
+    basic: true,
+    pro: true,
+    premium: true,
+  },
+  {
+    name: "Impuestos Nacionales (IUE, 605)",
+    basic: false,
+    pro: true,
+    premium: true,
+  },
+  { name: "Formularios 200, 400, 500", basic: false, pro: true, premium: true },
+  { name: "Diagnóstico tributario", basic: false, pro: true, premium: true },
+  {
+    name: "Auditoría financiera/tributaria",
+    basic: false,
+    pro: false,
+    premium: true,
+  },
+  { name: "Trámites SEPREC", basic: false, pro: false, premium: true },
+  { name: "SICOES, RUPE, PROBOLIVIA", basic: false, pro: false, premium: true },
+  { name: "Asesor dedicado WhatsApp", basic: false, pro: true, premium: true },
+  { name: "Revisión mensual 1:1", basic: false, pro: false, premium: true },
+  { name: "Capacitación a tu equipo", basic: false, pro: false, premium: true },
+  { name: "Soporte prioritario", basic: false, pro: true, premium: true },
+  { name: "Reportes ejecutivos", basic: false, pro: true, premium: true },
+];
+
+const plans = [
+  { name: "Básico", price: "Desde Bs. XXX", recommended: false },
+  { name: "Pro", price: "Desde Bs. XXX", recommended: true },
+  { name: "Premium", price: "Consultar", recommended: false },
+];
+---
+
+<div
+  class="relative overflow-x-auto rounded-2xl border border-border shadow-sm bg-white"
+>
+  <table class="w-full text-sm">
+    <thead class="bg-bg">
+      <tr>
+        <th class="text-left p-4 font-semibold text-primary min-w-[200px]"
+          >Característica</th
+        >
+        {
+          plans.map((plan) => (
+            <th
+              class={`p-4 text-center font-bold min-w-[150px] ${plan.recommended ? "bg-accent/10 text-accent" : "text-primary"}`}
+            >
+              {plan.name}
+              {plan.recommended && (
+                <span class="block text-xs font-normal text-text-light mt-1">
+                  ⭐ Recomendado
+                </span>
+              )}
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      {
+        features.map((feature, index) => (
+          <tr class={index % 2 === 0 ? "bg-white" : "bg-bg/30"}>
+            <td class="p-4 text-text font-medium">{feature.name}</td>
+            <td class="p-4 text-center">
+              {feature.basic ? (
+                <svg
+                  class="w-5 h-5 text-accent mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  class="w-5 h-5 text-border mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </td>
+            <td class="p-4 text-center bg-accent/5">
+              {feature.pro ? (
+                <svg
+                  class="w-5 h-5 text-accent mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  class="w-5 h-5 text-border mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </td>
+            <td class="p-4 text-center">
+              {feature.premium ? (
+                <svg
+                  class="w-5 h-5 text-accent mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  class="w-5 h-5 text-border mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<p class="mt-4 text-xs text-text-light text-center">
+  * Todos los planes incluyen confidencialidad garantizada y cumplimiento
+  normativo boliviano.
+</p>

@@ -1,0 +1,127 @@
+---
+// src/components/ServicesSection.astro
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  title = "Soluciones Integrales para tu Empresa",
+  subtitle = "Gestionamos cada aspecto contable, tributario y legal para que tú te enfoques en hacer crecer tu negocio.",
+  ctaText = "Agenda tu asesoría gratuita",
+  ctaHref = "#contacto"
+} = Astro.props;
+
+type ServiceCategory = {
+  src: string;
+  title: string;
+  items: string[];
+};
+
+const services: ServiceCategory[] = [
+  {
+    title: "TRÁMITES EN SEPREC",
+    src: "seprec.jpg",
+    items: [
+      "Apertura de Empresa Unipersonal",
+      "Constitución de Empresas S.R.L. y S.A.",
+      "Actualización de Matrículas de Comercio",
+      "Modificaciones y cambios operativos de Matrículas",
+      "Transferencia de Cuotas de Capital",
+      "Aumento y Disminución de Capital",
+      "Transformación y Transferencias de Empresas",
+      "Cierre, Liquidación y Disolución de Empresas",
+      "Revocatoria de Poder y Otorgamiento de Nuevo Poder"
+    ]
+  },
+  {
+    title: "IMPUESTOS NACIONALES",
+    src: "impuestos.png",
+    items: [
+      "Declaraciones Juradas IVA, IT, IUE, Form. 605 y Retenciones",
+      "Formularios 200, 400, 500, 430, 570 y otros",
+      "Registro de Compras y Ventas Mensuales (SIAT)",
+      "Bancarización y Diagnósticos Tributarios",
+      "Estados Financieros y Balances Anuales",
+      "Auditoría Financiera y Tributaria",
+      "Formulario 110 Dependientes"
+    ]
+  },
+  {
+    title: "TRÁMITES OTROS",
+    src: "otrostramites.svg",
+    items: [
+      "Seguros en Caja de Salud",
+      "Gestora Pública y Seguridad Social de Largo Plazo (AFPs)",
+      "SICOES, SIGEP, RUPE, PROBOLIVIA",
+      "Ministerio de Trabajo, ROE"
+    ]
+  }
+];
+---
+
+<section id="servicios" class="relative py-20 lg:py-28 bg-bg overflow-hidden">
+  <!-- Background decorations -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-10 left-1/4 w-72 h-72 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-lg text-text-light leading-relaxed">{subtitle}</p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {services.map((service, index) => (
+        <article 
+          class="group relative bg-white border border-border rounded-xl p-6 shadow-sm  hover:shadow-xl hover:border-gold/40 transition-all duration-300"
+        >
+          <!-- Top accent bar -->
+          <div class="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <!-- Icon & Title -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+              <img src={service.src} alt="" class="w-6 h-6" />
+            </div>
+            <h3 class="text-lg font-bold text-primary">{service.title}</h3>
+          </div>
+
+          <!-- Services List -->
+          <ul class="space-y-3" role="list">
+            {service.items.map((item) => (
+              <li class="flex items-start gap-3 text-text-light text-sm leading-snug">
+                <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a 
+        href={ctaHref} 
+        class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-lg rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/30 hover:scale-[1.02] transition-all duration-200"
+      >
+        {ctaText}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <p class="mt-4 text-sm text-text-light">
+        Respuesta en menos de 24 horas · Asesoría inicial sin costo
+      </p>
+    </div>
+  </div>
+</section>

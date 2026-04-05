@@ -1,12 +1,112 @@
+---
+import "@styles/global.css";
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	noindex?: boolean;
+}
+
+const {
+	title,
+	description = "Consultora contable, tributaria y de auditoría en La Paz, Bolivia. Asesoría legal, trámites SEPREC, Impuestos Nacionales y soluciones financieras para PYMEs.",
+	image = "/og-globalcont.jpg", // Genera una imagen 1200x630px
+	canonical,
+	noindex = false,
+} = Astro.props;
+
+const siteUrl = "https://globalcont.bo";
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+const fullTitle = title.includes("Global Cont")
+	? title
+	: `${title} | Global Cont`;
+
+// JSON-LD dinámico para LocalBusiness/AccountingService
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "AccountingService",
+	name: "GLOBALCONT AUDIT SOLUTION S.R.L.",
+	legalName: "GLOBALCONT AUDIT SOLUTION S.R.L.",
+	description:
+		"Consultora contable, tributaria y de auditoría en La Paz, Bolivia.",
+	url: siteUrl,
+	telephone: "+591-76063400",
+	email: "contacto@globalcont.bo",
+	taxID: "621771025",
+	priceRange: "$$",
+	address: {
+		"@type": "PostalAddress",
+		streetAddress: "Calle Rosendo Gutiérrez #255",
+		addressLocality: "La Paz",
+		addressRegion: "La Paz",
+		postalCode: "",
+		addressCountry: "BO",
+	},
+	geo: {
+		"@type": "GeoCoordinates",
+		latitude: -16.5, // Ajusta con coordenadas reales
+		longitude: -68.15, // Ajusta con coordenadas reales
+	},
+	openingHoursSpecification: {
+		"@type": "OpeningHoursSpecification",
+		dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+		opens: "09:00",
+		closes: "18:00",
+	},
+	sameAs: ["https://www.facebook.com/globalcont.bo/"],
+	serviceArea: {
+		"@type": "State",
+		name: "La Paz",
+	},
+};
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#0A1F44" />
+
+		<!-- Meta Básico -->
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta
+			name="robots"
+			content={noindex ? "noindex, nofollow" : "index, follow"}
+		/>
+
+		<!-- Open Graph (Facebook/LinkedIn) -->
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${siteUrl}${image}`} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_BO" />
+		<meta property="og:site_name" content="Global Cont" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${siteUrl}${image}`} />
+
+		<!-- Favicon & Manifest -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="manifest" href="/manifest.webmanifest" />
+
+		<!-- Preconnect & DNS-Prefetch -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="dns-prefetch" href="https://wa.me" />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+		<slot name="head" />
 	</head>
 	<body>
 		<slot />
@@ -19,5 +119,37 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+</style>
+
+<style is:global>
+	:root {
+	}
+
+	html {
+		scrollbar-gutter: stable;
+		scroll-behavior: smooth;
+	}
+
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+	::-webkit-scrollbar-track {
+		background: var(--color-black);
+	}
+	::-webkit-scrollbar-thumb {
+		background: #222;
+		border-radius: 10px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--color-blue);
+	}
+
+	body {
+		margin: 0;
+		width: 100%;
+		min-height: 100vh;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
 	}
 </style>

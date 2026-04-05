@@ -1,11 +1,42 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import About from "@/sections/About.astro";
+import Layout from "@layouts/Layout.astro";
+import Hero from "@sections/Hero.astro";
+import Services from "@sections/Services.astro";
+import WorkProcess from "@sections/WorkProcess.astro";
+import PackagesSection from "@sections/PackagesSection.astro";
+import ComparisonTable from "@sections/ComparasionTable.astro";
+import Contact from "@sections/Contact.astro";
+import Footer from "@sections/Footer.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Consultora Contable y Tributaria en La Paz | Global Cont"
+	description="Asesoría contable, trámites SEPREC, Impuestos Nacionales y auditorías para PYMEs en Bolivia. Cumplimiento legal sin complicaciones."
+	image="/og-home.jpg"
+>
+	<Hero />
+	<Services
+		title="Soluciones para tu Empresa"
+		subtitle="Gestionamos cada aspecto contable, tributario y legal para que tú te enfoques en hacer crecer tu negocio."
+		ctaHref="/contacto"
+	/>
+
+	<WorkProcess />
+	<PackagesSection />
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+		<h2 class="text-3xl font-bold text-center mb-8 text-primary">
+			Compara todos los planes
+		</h2>
+		<ComparisonTable />
+	</div>
+	<!-- TESTEMINIALS -->
+	<About />
+	<Contact />
+	<Footer
+		companyName="GLOBALCONT"
+		tagline="Consultora Contable Legal y Tributaria"
+		phone="76063400"
+		nit="621771025"
+	/>
 </Layout>

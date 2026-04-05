@@ -1,0 +1,269 @@
+---
+import Image from "astro:assets";
+// src/components/HeroGlobalCont.astro
+// Props opcionales para reutilización
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  showTrustBadges?: boolean;
+}
+
+const {
+  title = "Transformamos tu gestión contable en claridad estratégica",
+  subtitle = "Asesoría contable, tributaria y auditorías empresariales en La Paz. Evita complicaciones legales y optimiza tus decisiones financieras con expertos certificados.",
+  ctaText = "Agenda tu consulta gratis",
+  ctaHref = "#contacto",
+  showTrustBadges = true,
+} = Astro.props;
+---
+
+<!-- HERO SECTION - Global Cont (Astro + Tailwind) -->
+<section class="relative bg-bg overflow-hidden">
+  {/* Decorative background elements - Astro comments en JSX style */}
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div
+      class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Contenido textual -->
+      <div class="space-y-8">
+        <!-- Badge de confianza -->
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-border rounded-full shadow-sm"
+        >
+          <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+          <span class="text-sm text-text-light"
+            >Consultora líder en Bolivia 🇧🇴</span
+          >
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          Transformamos tu
+          <span class="relative inline-block">
+            gestión contable
+            <svg
+              class="absolute -bottom-2 left-0 w-full"
+              viewBox="0 0 200 12"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 10 Q50 2, 100 6 T198 4"
+                stroke="var(--color-gold)"
+                stroke-width="3"
+                stroke-linecap="round"
+                opacity="0.6"></path>
+            </svg>
+          </span>
+          en claridad estratégica
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-lg text-text-light max-w-xl leading-relaxed">
+          {subtitle}
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href={ctaHref}
+            class="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-shadow group"
+          >
+            {ctaText}
+            <svg
+              class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <a
+            href="#servicios"
+            class="inline-flex items-center justify-center px-6 py-3.5 rounded-lg border-2 border-border text-primary font-medium hover:border-primary/50 hover:bg-primary/5 transition-colors"
+          >
+            Conoce nuestros servicios
+          </a>
+        </div>
+
+        <!-- Trust indicators (condicional con Astro) -->
+        {
+          showTrustBadges && (
+            <div class="flex flex-wrap items-center gap-6 pt-4 border-t border-border">
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-accent"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-text-light">
+                  +500 empresas asesoradas
+                </span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-accent"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-text-light">
+                  Cumplimiento 100% garantizado
+                </span>
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Visual / Imagen -->
+      <div class="relative lg:pl-8">
+        <!-- Marco decorativo dorado -->
+        <div
+          class="absolute -inset-4 border-2 border-gold/30 rounded-2xl rotate-2"
+          aria-hidden="true"
+        >
+        </div>
+
+        <!-- Contenedor de imagen principal -->
+        <div
+          class="relative bg-white rounded-2xl shadow-2xl shadow-primary/10 overflow-hidden border border-border"
+        >
+          {
+            /* Placeholder para imagen - Reemplazar con <Image> de Astro si usas @astrojs/image */
+          }
+          <!--   <Image
+            src="/home/printer/erodes/Downloads/76222303/removed.png"
+            alt="Hero"
+            width={800}
+            height={600}
+            class="w-full h-full"
+          /> -->
+          <img
+            src="removed.png"
+            alt="A bird."
+            class="w-full h-full object-cover absolute top-0 left-0 z-10"
+          />
+
+          <div
+            class="aspect-[4/3] bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center p-8"
+          >
+            <div class="text-center text-white">
+              <div
+                class="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-2xl mb-6 backdrop-blur-sm"
+              >
+                <svg
+                  class="w-10 h-10 text-gold"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Global Cont</h3>
+              <p class="text-white/80 text-sm">
+                Soluciones contables inteligentes
+              </p>
+            </div>
+          </div>
+
+          <!-- Floating card: Stats -->
+          <div
+            class="absolute -bottom-2 -left-2 bg-white rounded-xl shadow-lg border border-border p-4 max-w-xs"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-primary">98%</p>
+                <p class="text-xs text-text-light">Clientes satisfechos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom wave divider */}
+  <div
+    class="absolute bottom-0 left-0 right-50 h-3 bg-[var(--color-primary)]/75"
+    style="clip-path: ellipse(150% 100% at 50% 0%);"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute bottom-3 left-50 right-0 h-3 bg-[var(--color-accent)]/75"
+    style="clip-path: ellipse(150% 100% at 50% 0%);"
+    aria-hidden="true"
+  >
+  </div>
+</section>
+
+<style is:global>
+  /* Si necesitas animaciones personalizadas que Tailwind no cubre */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://globalcont.bo/sitemap-index.xml
+
+# Bloquear rutas de admin o borradores si existen
+Disallow: /_astro/
+Disallow: /api/

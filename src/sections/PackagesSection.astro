@@ -1,0 +1,140 @@
+---
+// src/components/PackagesSection.astro
+interface Plan {
+  name: string;
+  subtitle?: string;
+  price: string;
+  features: string[];
+  ctaText: string;
+  ctaHref: string;
+  recommended?: boolean;
+}
+
+const plans: Plan[] = [
+  {
+    name: "Básico",
+    subtitle: "Ideal para emprendedores y unipersonales",
+    price: "Desde Bs. XXX",
+    features: [
+      "Contabilidad mensual completa",
+      "Declaraciones IVA e IT",
+      "Registro de compras y ventas (SIAT)",
+      "Reporte mensual básico",
+      "Soporte por correo"
+    ],
+    ctaText: "Elegir Básico",
+    ctaHref: "#contacto?plan=basico"
+  },
+  {
+    name: "Pro",
+    subtitle: "Para PYMEs en crecimiento",
+    price: "Desde Bs. XXX",
+    features: [
+      "Todo lo del plan Básico",
+      "Gestión de Impuestos Nacionales (IUE, 605, Retenciones)",
+      "Formularios 200, 400, 500",
+      "Diagnóstico tributario trimestral",
+      "Asesor dedicado por WhatsApp",
+      "Reportes ejecutivos"
+    ],
+    ctaText: "Elegir Pro",
+    ctaHref: "#contacto?plan=pro",
+    recommended: true
+  },
+  {
+    name: "Premium",
+    subtitle: "Auditoría y estrategia completa",
+    price: "Consultar tarifa",
+    features: [
+      "Todo lo del plan Pro",
+      "Auditoría financiera y tributaria anual",
+      "Constitución/modificación de empresas (SEPREC)",
+      "Trámites en SICOES, RUPE, PROBOLIVIA",
+      "Capacitación interna para tu equipo",
+      "Revisión mensual 1:1 con socio director"
+    ],
+    ctaText: "Hablar con un asesor",
+    ctaHref: "#contacto?plan=premium"
+  }
+];
+---
+
+<section id="planes" class="relative py-20 lg:py-28 bg-bg overflow-hidden">
+  <!-- Decorative -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-20 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="absolute top-0 left-0 w-64 h-64 bg-[url('/mar_decorative.svg')] bg-contain bg-no-repeat opacity-60 pointer-events-none mix-blend-luminosity">
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        Paquetes diseñados para tu etapa
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Elige cómo quieres trabajar con nosotros</h2>
+      <p class="text-lg text-text-light leading-relaxed">
+        Sin costos ocultos. Sin sorpresas. Escala o ajusta tu plan según las necesidades reales de tu empresa.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+      {plans.map((plan) => (
+        <article 
+          class={`relative bg-white border rounded-2xl p-6 lg:p-8 shadow-sm transition-all duration-300 hover:shadow-lg
+            ${plan.recommended ? 'border-accent ring-2 ring-accent/20' : 'border-border'}`}
+        >
+          {/* Recommended Badge */}
+          {plan.recommended && (
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-white text-xs font-bold rounded-full shadow-md">
+              ⭐ Más elegido por PYMEs
+            </div>
+          )}
+
+          <!-- Plan Header -->
+          <div class="mb-6">
+            <h3 class="text-xl font-bold text-primary">{plan.name}</h3>
+            {plan.subtitle && <p class="text-sm text-text-light mt-1">{plan.subtitle}</p>}
+            <div class="mt-4 flex items-baseline gap-1">
+              <span class="text-3xl font-bold text-primary">{plan.price.split(" ")[0]}</span>
+              <span class="text-sm text-text-light">{plan.price.split(" ").slice(1).join(" ")}</span>
+            </div>
+          </div>
+
+          <!-- Features -->
+          <ul class="space-y-3 mb-8" role="list">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm text-text-light">
+                <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- CTA -->
+          <a 
+            href={plan.ctaHref} 
+            class={`block w-full text-center px-6 py-3 rounded-lg font-medium transition-all duration-200
+              ${plan.recommended 
+                ? 'bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/25 hover:shadow-accent/30' 
+                : 'bg-white border border-border text-primary hover:border-primary hover:bg-primary/5'}`}
+          >
+            {plan.ctaText}
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom reassurance -->
+    <div class="mt-12 text-center">
+      <p class="text-sm text-text-light">
+        ¿No sabes cuál elegir? <a href="#contacto" class="text-primary font-medium underline hover:text-accent">Te ayudamos a elegir el plan ideal</a> en una llamada de 15 min sin costo.
+      </p>
+    </div>
+  </div>
+</section>
